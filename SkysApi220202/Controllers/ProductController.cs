@@ -69,9 +69,34 @@ public class ProductController : ControllerBase
         int id = product.Id;
         var obj = new ProductDTO();
         //map
+        obj.Color = product.Color;
+        obj.Ean13 = product.Ean13;
+        obj.LastBought = product.LastBought;
+        obj.Name = product.Name;
+        obj.PopularityPercent = product.PopularityPercent;
+        obj.Price = product.Price;
 
         return CreatedAtAction(nameof(GetSingle), new { id = id }, obj);
     }
+
+
+    [HttpPut("{id}")]
+    public IActionResult Put(string useremail, int id, [FromBody] ProductDTO model)
+    {
+        var product = _context.Products.FirstOrDefault(e =>
+            e.Id == id);
+        if (product == null) return NotFound();
+        product.Color = model.Color;
+        product.Ean13 = model.Ean13;
+        product.LastBought = model.LastBought;
+        product.Name = model.Name;
+        product.PopularityPercent = model.PopularityPercent;
+        product.Price = model.Price;
+        _context.SaveChanges();
+        return NoContent();
+
+    }
+
 
 
 
