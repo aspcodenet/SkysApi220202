@@ -81,7 +81,7 @@ public class ProductController : ControllerBase
 
 
     [HttpPut("{id}")]
-    public IActionResult Put(string useremail, int id, [FromBody] ProductDTO model)
+    public IActionResult Put(int id, [FromBody] ProductDTO model)
     {
         var product = _context.Products.FirstOrDefault(e =>
             e.Id == id);
