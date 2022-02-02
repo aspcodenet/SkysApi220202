@@ -52,7 +52,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<ProductDTO> Create(ProductDTO model)
+    public ActionResult<ProductDTO> Create(ProductNewDTO model)
     {
         var product = new Product
         {
